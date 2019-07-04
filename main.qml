@@ -13,7 +13,7 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
         interactive: false
 
-        Page1Form {
+        PageMap {
         }
 
         Page2Form {
