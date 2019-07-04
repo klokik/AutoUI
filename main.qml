@@ -11,6 +11,7 @@ ApplicationWindow {
         id: swipeView
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
+        interactive: false
 
         Page1Form {
         }
@@ -24,7 +25,7 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            text: qsTr("Page 1")
+            text: qsTr("Map")
         }
         TabButton {
             text: qsTr("Page 2")
