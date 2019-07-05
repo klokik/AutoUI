@@ -16,7 +16,7 @@ ApplicationWindow {
         PageMap {
         }
 
-        Page2Form {
+        PageWeb {
         }
     }
 
