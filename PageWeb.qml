@@ -44,6 +44,7 @@ Page {
                 text: webEngineView.url
                 selectByMouse: true
                 onEditingFinished: webEngineView.url = text
+                font.pixelSize: Qt.application.font.pixelSize * 2
             }
 
             ToolButton {

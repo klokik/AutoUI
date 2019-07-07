@@ -22,6 +22,10 @@ ApplicationWindow {
 
         PageWeb {
         }
+
+        Label {
+            text: "Nothing there yet"
+        }
     }
 
     footer: TabBar {
@@ -29,11 +33,21 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
         z: inputPanel.z + 1
 
+        property real fontSize: height / 2
+
         TabButton {
             text: qsTr("Map")
+            font.pixelSize: tabBar.fontSize
         }
         TabButton {
             text: qsTr("Web")
+            font.pixelSize: tabBar.fontSize
+        }
+        TabButton {
+            text: qsTr("+")
+            width: height
+            font.bold: true
+            font.pixelSize: tabBar.fontSize
         }
     }
 

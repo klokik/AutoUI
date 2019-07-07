@@ -6,11 +6,13 @@ Page {
     width: 600
     height: 400
 
-    header: TextInput {
-        text: qsTr("Location search")
+    header: TextField {
         cursorVisible: true
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
+
+        text: qsTr("Search")
+        selectByMouse: true
     }
 
     Plugin {
