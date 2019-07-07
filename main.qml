@@ -39,15 +39,34 @@ ApplicationWindow {
             text: qsTr("Map")
             font.pixelSize: tabBar.fontSize
         }
+
         TabButton {
             text: qsTr("Web")
             font.pixelSize: tabBar.fontSize
         }
+
         TabButton {
+            id: newTabButton
             text: qsTr("+")
             width: height
             font.bold: true
             font.pixelSize: tabBar.fontSize
+
+            onClicked: {
+                function newTab(kind, args) {
+                    console.log("New tab of kind '" + kind + "' requested");
+
+                    var label = "Page " + swipeView.count;
+
+                    var tab_page = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; Label { text: '${label}' }`, swipeView)
+                    var tab_button = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; TabButton { text: '${label}' }`, tabBar)
+
+                    swipeView.insertItem(swipeView.count-2, tab_page);
+                    tabBar.insertItem(tabBar.count-2, tab_button);
+                }
+
+                newTab("empty", "none")
+            }
         }
     }
 
