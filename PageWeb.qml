@@ -7,6 +7,8 @@ Page {
     width: 600
     height: 400
 
+    property alias url: webEngineView.url
+
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
@@ -43,8 +45,63 @@ Page {
 
                 text: webEngineView.url
                 selectByMouse: true
-                onEditingFinished: webEngineView.url = text
                 font.pixelSize: Qt.application.font.pixelSize * 2
+
+                onEditingFinished: function() {
+                    if (text == webEngineView.url) {
+                        console.log("Url contains same text");
+                        return;
+                    } else {
+                        console.log("Old URL:", webEngineView.url);
+                        console.log("New URL request:", text)
+                    }
+
+                    function isUrl(request) {
+                        console.log("test for spaces:", request.includes(" "));
+                        if (request.includes(" "))
+                            return false;
+
+                        console.log("test for dots:", request.includes("."));
+                        if (!request.includes("."))
+                            return false; // unlikely, except for local domains, which should be prepended explicitly
+
+                        if (request.match(/\.(com|net|org|ua|ru|xyz|icu)/gi))
+                            return true;
+
+                        // default
+                        return true;
+                    }
+
+                    function groomUrl(address) {
+                        console.log("Grooming: '" + address + "'")
+                        address = address.trim()
+                        if (address.match(/http[s]?:\/\/.*/i)) {
+                            console.log("Already valid")
+                        } else {
+                            console.log("Specifying 'https' protocol")
+                            address = "https://" + address
+                        }
+
+                        console.log("Result: '" + address + "'")
+                        return address;
+                    }
+
+                    function genSearchUrl(request) {
+                        var search_engine = "https://duckduckgo.com/?q={query}&kp=-1&kl=us-en";
+                        var url = search_engine.replace("{query}", encodeURIComponent(request));
+
+                        return url;
+                    }
+
+                    if (isUrl(text)) {
+                        console.log("Is an Url")
+                        webEngineView.url = groomUrl(text)
+                    }
+                    else {
+                        console.log("Not an Url, searching Web")
+                        webEngineView.url = genSearchUrl(text)
+                    }
+                }
             }
 
             ToolButton {
