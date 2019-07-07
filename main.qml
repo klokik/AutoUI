@@ -21,6 +21,7 @@ ApplicationWindow {
         }
 
         PageWeb {
+            url: "https://duckduckgo.com"
         }
 
         Label {
@@ -53,21 +54,30 @@ ApplicationWindow {
             font.pixelSize: tabBar.fontSize
 
             onClicked: {
-                function newTab(kind, args) {
-                    console.log("New tab of kind '" + kind + "' requested");
-
-                    var label = "Page " + swipeView.count;
-
-                    var tab_page = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; Label { text: '${label}' }`, swipeView)
-                    var tab_button = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; TabButton { text: '${label}' }`, tabBar)
-
-                    swipeView.insertItem(swipeView.count-2, tab_page);
-                    tabBar.insertItem(tabBar.count-2, tab_button);
-                }
-
-                newTab("empty", "none")
+                newTab("web", "none")
             }
         }
+    }
+
+    function newTab(kind, args) {
+        console.log("New tab of kind '" + kind + "' requested");
+
+        var label = "Page " + swipeView.count;
+
+        var qml_imports = "import QtQuick 2.12; import QtQuick.Controls 2.5;"
+        var tab_page_qml;
+        if (kind == "web") {
+            label = "Web"
+            tab_page_qml = `${qml_imports} PageWeb { url: '${args}'}`;
+        } else {
+            tab_page_qml = `${qml_imports} Label { text: '${label}' }`;
+        }
+
+        var tab_page = Qt.createQmlObject(tab_page_qml, swipeView)
+        var tab_button = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; TabButton { text: '${label}'; font.pixelSize: tabBar.fontSize; }`, tabBar);
+
+        swipeView.insertItem(swipeView.count-2, tab_page);
+        tabBar.insertItem(tabBar.count-2, tab_button);
     }
 
     InputPanel {
