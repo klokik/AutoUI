@@ -5,5 +5,6 @@
         <file>qtquickcontrols2.conf</file>
         <file>PageMap.qml</file>
         <file>PageWeb.qml</file>
+        <file>AutoScroller.qml</file>
     </qresource>
 </RCC>
