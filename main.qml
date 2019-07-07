@@ -69,6 +69,9 @@ ApplicationWindow {
         if (kind == "web") {
             label = "Web"
             tab_page_qml = `${qml_imports} PageWeb { url: '${args}'}`;
+        } else if (kind == "map") {
+            label = "Map"
+            tab_page_qml = `${qml_imports} PageMap {}`;
         } else {
             tab_page_qml = `${qml_imports} Label { text: '${label}' }`;
         }
