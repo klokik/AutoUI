@@ -174,5 +174,10 @@ Page {
                 contextMenu.popup();
             }
         }
+
+        onNewViewRequested: function(request) {
+            console.log(request.requestedUrl.toString())
+            appContainer.newTab("web", request.requestedUrl.toString())
+        }
     }
 }
