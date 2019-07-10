@@ -11,7 +11,7 @@ Page {
         anchors.fill: parent
 
         property int fontSize: 48
-        property real buttonWidth: width / 3
+        property real buttonWidth: width / 2
 
         ToolButton {
             text: "Map"
@@ -36,7 +36,49 @@ Page {
         }
 
         ToolButton {
-            text: "kek3"
+            text: "Music"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: parent.buttonWidth
+            font.pointSize: parent.fontSize
+        }
+
+        ToolButton {
+            text: "Radio"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: parent.buttonWidth
+            font.pointSize: parent.fontSize
+        }
+
+        ToolButton {
+            text: "Movies"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: parent.buttonWidth
+            font.pointSize: parent.fontSize
+        }
+
+        ToolButton {
+            text: "News"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: parent.buttonWidth
+            font.pointSize: parent.fontSize
+        }
+
+        ToolButton {
+            text: "A/C"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: parent.buttonWidth
+            font.pointSize: parent.fontSize
+        }
+
+        ToolButton {
+            text: "Sensors"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: parent.buttonWidth
+            font.pointSize: parent.fontSize
+        }
+
+        ToolButton {
+            text: "Debug"
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: parent.buttonWidth
             font.pointSize: parent.fontSize
