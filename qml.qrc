@@ -6,5 +6,6 @@
         <file>PageMap.qml</file>
         <file>PageWeb.qml</file>
         <file>AutoScroller.qml</file>
+        <file>PageLanding.qml</file>
     </qresource>
 </RCC>

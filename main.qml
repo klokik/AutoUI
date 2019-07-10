@@ -24,8 +24,7 @@ ApplicationWindow {
             url: "https://duckduckgo.com"
         }
 
-        Label {
-            text: "Nothing there yet"
+        PageLanding {
         }
     }
 
@@ -54,7 +53,7 @@ ApplicationWindow {
             font.pixelSize: tabBar.fontSize
 
             onClicked: {
-                newTab("web", "none")
+                // newTab("landing", "none")
             }
         }
     }
@@ -72,6 +71,9 @@ ApplicationWindow {
         } else if (kind == "map") {
             label = "Map"
             tab_page_qml = `${qml_imports} PageMap {}`;
+        } else if (kind == "landing") {
+            label = "..."
+            tab_page_qml = `${qml_imports} PageLanding {}`;
         } else {
             tab_page_qml = `${qml_imports} Label { text: '${label}' }`;
         }
@@ -81,6 +83,10 @@ ApplicationWindow {
 
         swipeView.insertItem(swipeView.count-2, tab_page);
         tabBar.insertItem(tabBar.count-2, tab_button);
+
+//        swipeView.addItem(tab_page);
+//        tabBar.addItem(tab_button);
+//        tabBar.setCurrentIndex(tabBar.count-2)
     }
 
     InputPanel {
