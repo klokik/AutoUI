@@ -40,6 +40,10 @@ Page {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: parent.buttonWidth
             font.pointSize: parent.fontSize
+
+            onClicked: {
+                appContainer.newTab("music", "none")
+            }
         }
 
         ToolButton {
