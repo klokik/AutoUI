@@ -38,6 +38,14 @@ Page {
                 Layout.fillWidth: true
             }
             Button {
+                text: "Stop"
+                Layout.fillWidth: false
+
+                onClicked: {
+                    musicPlayer.stop()
+                }
+            }
+            Button {
                 text: ["Play", "Pause", "Play"][musicPlayer.playbackState]
                 Layout.fillWidth: true
 
@@ -60,7 +68,6 @@ Page {
 
         Slider {
             id: playbackPosition
-            Layout.alignment: Qt.AlignBottom
             Layout.fillWidth: true
 
             from: 0
@@ -69,6 +76,27 @@ Page {
             value: musicPlayer.position
             onMoved: {
                 musicPlayer.seek(value)
+            }
+        }
+
+        RowLayout {
+            Button {
+                text: musicPlayer.muted ? "Unmute" : "Mute"
+
+                onClicked: {
+                    if (musicPlayer.muted)
+                        musicPlayer.muted = false
+                    else
+                        musicPlayer.muted = true
+                }
+            }
+
+            Slider {
+                id: volumeLevel
+                Layout.fillWidth: true
+
+                value: musicPlayer.volume
+                onMoved: musicPlayer.volume = value
             }
         }
 
