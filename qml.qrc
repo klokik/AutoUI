@@ -7,5 +7,6 @@
         <file>PageWeb.qml</file>
         <file>AutoScroller.qml</file>
         <file>PageLanding.qml</file>
+        <file>PageMusic.qml</file>
     </qresource>
 </RCC>

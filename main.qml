@@ -17,6 +17,9 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
         interactive: false
 
+        PageMusic {
+        }
+
         PageMap {
         }
 
@@ -34,6 +37,11 @@ ApplicationWindow {
         z: inputPanel.z + 1
 
         property real fontSize: height / 2
+
+        TabButton {
+            text: qsTr("Music")
+            font.pixelSize: tabBar.fontSize
+        }
 
         TabButton {
             text: qsTr("Map")
@@ -71,6 +79,9 @@ ApplicationWindow {
         } else if (kind == "map") {
             label = "Map"
             tab_page_qml = `${qml_imports} PageMap {}`;
+        } else if (kind == "music") {
+            label = "Music"
+            tab_page_qml = `${qml_imports} PageMusic {}`;
         } else if (kind == "landing") {
             label = "..."
             tab_page_qml = `${qml_imports} PageLanding {}`;
