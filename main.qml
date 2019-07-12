@@ -41,6 +41,28 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Music")
             font.pixelSize: tabBar.fontSize
+
+            Rectangle {
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                width: 24
+
+                color: "red"
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        var index = parent.parent.index
+
+                        tabBar.decrementCurrentIndex()
+                        swipeView.decrementCurrentIndex()
+
+                        closeTab(index)
+                    }
+                }
+            }
         }
 
         TabButton {
@@ -90,14 +112,24 @@ ApplicationWindow {
         }
 
         var tab_page = Qt.createQmlObject(tab_page_qml, swipeView)
-        var tab_button = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; TabButton { text: '${label}'; font.pixelSize: tabBar.fontSize; }`, tabBar);
+        var tab_close_button_qml = "Rectangle { anchors.right: parent.right; anchors.top: parent.top; anchors.bottom: parent.bottom; width: 24; color: \"red\"; MouseArea { anchors.fill: parent; onClicked: {
+                                    closeTab(parent.parent.index); }}}";
+        var tab_button = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; TabButton { text: '${label}'; font.pixelSize: tabBar.fontSize; ${tab_close_button_qml}}`, tabBar);
 
-        swipeView.insertItem(swipeView.count-2, tab_page);
+        swipeView.insertItem(swipeView.couswipeViewnt-2, tab_page);
         tabBar.insertItem(tabBar.count-2, tab_button);
 
 //        swipeView.addItem(tab_page);
 //        tabBar.addItem(tab_button);
 //        tabBar.setCurrentIndex(tabBar.count-2)
+    }
+
+    function closeTab(index) {
+        var ind = Number(index)
+        tabBar.decrementCurrentIndex();
+        swipeView.decrementCurrentIndex();
+        tabBar.removeItem(ind)
+        swipeView.removeItem(ind)
     }
 
     InputPanel {
