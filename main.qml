@@ -71,7 +71,7 @@ ApplicationWindow {
         }
 
         var tab_page = Qt.createQmlObject(tab_page_qml, swipeView)
-        var tab_close_button_qml = "Rectangle { anchors.right: parent.right; anchors.top: parent.top; anchors.bottom: parent.bottom; width: 24; color: \"red\"; MouseArea { anchors.fill: parent; onClicked: {
+        var tab_close_button_qml = "Rectangle { anchors.right: parent.right; anchors.top: parent.top; anchors.bottom: parent.bottom; width: height * 0.6; color: \"red\"; MouseArea { anchors.fill: parent; onClicked: {
                                     closeTab(parent.parent.TabBar.index); }}}";
         var tab_button = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; TabButton { text: '${label}'; font.pixelSize: tabBar.fontSize; ${tab_close_button_qml}}`, tabBar);
 
