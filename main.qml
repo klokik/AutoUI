@@ -17,16 +17,6 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
         interactive: false
 
-        PageMusic {
-        }
-
-        PageMap {
-        }
-
-        PageWeb {
-            url: "https://duckduckgo.com"
-        }
-
         PageLanding {
         }
     }
@@ -38,41 +28,10 @@ ApplicationWindow {
 
         property real fontSize: height / 2
 
-        TabButton {
-            text: qsTr("Music")
-            font.pixelSize: tabBar.fontSize
-
-            Rectangle {
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                width: 24
-
-                color: "red"
-
-                MouseArea {
-                    anchors.fill: parent
-
-                    onClicked: {
-                        var index = parent.parent.index
-
-                        tabBar.decrementCurrentIndex()
-                        swipeView.decrementCurrentIndex()
-
-                        closeTab(index)
-                    }
-                }
-            }
-        }
-
-        TabButton {
-            text: qsTr("Map")
-            font.pixelSize: tabBar.fontSize
-        }
-
-        TabButton {
-            text: qsTr("Web")
-            font.pixelSize: tabBar.fontSize
+        Component.onCompleted: {
+            newTab("music", "none");
+            newTab("map", "none");
+            newTab("web", "https://duckduckgo.com");
         }
 
         TabButton {
@@ -113,10 +72,10 @@ ApplicationWindow {
 
         var tab_page = Qt.createQmlObject(tab_page_qml, swipeView)
         var tab_close_button_qml = "Rectangle { anchors.right: parent.right; anchors.top: parent.top; anchors.bottom: parent.bottom; width: 24; color: \"red\"; MouseArea { anchors.fill: parent; onClicked: {
-                                    closeTab(parent.parent.index); }}}";
+                                    closeTab(parent.parent.TabBar.index); }}}";
         var tab_button = Qt.createQmlObject(`import QtQuick 2.12; import QtQuick.Controls 2.5; TabButton { text: '${label}'; font.pixelSize: tabBar.fontSize; ${tab_close_button_qml}}`, tabBar);
 
-        swipeView.insertItem(swipeView.couswipeViewnt-2, tab_page);
+        swipeView.insertItem(swipeView.count-2, tab_page);
         tabBar.insertItem(tabBar.count-2, tab_button);
 
 //        swipeView.addItem(tab_page);
@@ -125,11 +84,11 @@ ApplicationWindow {
     }
 
     function closeTab(index) {
-        var ind = Number(index)
-        tabBar.decrementCurrentIndex();
-        swipeView.decrementCurrentIndex();
-        tabBar.removeItem(ind)
-        swipeView.removeItem(ind)
+        console.log("Removing tab ", index)
+//        tabBar.decrementCurrentIndex();
+//        swipeView.decrementCurrentIndex();
+        swipeView.takeItem(index).destroy()
+        tabBar.takeItem(index).destroy()
     }
 
     InputPanel {
