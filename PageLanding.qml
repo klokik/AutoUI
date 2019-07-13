@@ -82,6 +82,13 @@ Page {
         }
 
         ToolButton {
+            text: "Wireless"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: parent.buttonWidth
+            font.pointSize: parent.fontSize
+        }
+
+        ToolButton {
             text: "Debug"
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: parent.buttonWidth
