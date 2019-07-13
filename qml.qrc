@@ -8,5 +8,6 @@
         <file>AutoScroller.qml</file>
         <file>PageLanding.qml</file>
         <file>PageMusic.qml</file>
+        <file>res/AlbumCover.png</file>
     </qresource>
 </RCC>
