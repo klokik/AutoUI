@@ -52,7 +52,7 @@ Page {
         id: pageFlicker
         anchors.fill: parent
         flickableDirection: Flickable.VerticalFlick
-        contentHeight: trackListView.y + trackListView.height
+        contentHeight: metadataRow.height + titleRow.height + 32 + buttonsRow.height + playbackPositionLabel.height + playbackPosition.height + volumeRow.height + trackListView.height + pageColumn.spacing*6
 
         Rectangle {
             anchors.fill: parent
@@ -62,9 +62,11 @@ Page {
         }
 
         ColumnLayout {
+            id: pageColumn
             anchors.fill: parent
 
             RowLayout {
+                id: metadataRow
                 Layout.fillWidth: true
 
                 Image {
@@ -133,6 +135,7 @@ Page {
             }
 
             Text {
+                id: titleRow
                 text: musicPlayer.metaData.title ? musicPlayer.metaData.title : "Unk"
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 horizontalAlignment: Text.AlignHCenter
@@ -144,6 +147,7 @@ Page {
             }
 
             RowLayout {
+                id: buttonsRow
                 Layout.alignment: Qt.AlignTop
 
                 Button {
@@ -178,6 +182,7 @@ Page {
             }
 
             Label {
+                id: playbackPositionLabel
                 text: playbackPosition.value
             }
 
@@ -195,6 +200,7 @@ Page {
             }
 
             RowLayout {
+                id: volumeRow
                 Button {
                     text: musicPlayer.muted ? "Unmute" : "Mute"
 
