@@ -9,5 +9,6 @@
         <file>PageLanding.qml</file>
         <file>PageMusic.qml</file>
         <file>res/AlbumCover.png</file>
+        <file>res/compass.svg</file>
     </qresource>
 </RCC>
