@@ -23,8 +23,7 @@ Page {
         showDirs: false
         showOnlyReadable: true
 
-//        folder: "file:///home/klokik/Music"
-        folder: "file:///home/klokik/Music/yt/syrex"
+        folder: "file:///home/klokik/Music"
         nameFilters: ["*.flac", "*.wav", "*.opus", ".ogg", "*.aac", "*.m4a", "*.mp3"]
 
         onStatusChanged: {
@@ -46,22 +45,24 @@ Page {
             source: "http://kcrw.streamguys1.com/kcrw_192k_mp3_e24_internet_radio"
         }
 
-        onItemChanged: trackListView.itemsHeightReserve = itemCount
+        onItemInserted: trackListView.itemsHeightReserve = itemCount
     }
 
     Flickable {
+        id: pageFlicker
         anchors.fill: parent
         flickableDirection: Flickable.VerticalFlick
-        contentHeight: 2048
+        contentHeight: trackListView.y + trackListView.height
 
         Rectangle {
             anchors.fill: parent
             color: "pink"
+
+            visible: false
         }
 
         ColumnLayout {
-            anchors.left: parent.left
-            anchors.right: parent.right
+            anchors.fill: parent
 
             RowLayout {
                 Layout.fillWidth: true
@@ -217,23 +218,25 @@ Page {
 
             ListView {
                 id: trackListView
-//                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignTop
 
-                property var itemHeight: 16
+                property var itemHeight: 32
                 property var itemsHeightReserve: 24
-                Layout.minimumHeight: 480 + itemHeight * itemsHeightReserve
-                contentHeight: 480 + itemHeight * itemsHeightReserve
-//                spacing: itemHeight
+                property var expectedHeight: itemHeight * itemsHeightReserve
+                Layout.minimumHeight: expectedHeight
 
                 model: trackList
                 delegate: ItemDelegate {
                     text: source
                     font.pointSize: 16
-                    height: parent.itemHeight
+                    implicitHeight: trackListView.itemHeight
 
                     onClicked: {
                         trackList.currentIndex = index
-                        console.log(parent.text)
+//                        console.log(index)
+//                        console.log("Expected height: ", trackListView.expectedHeight)
+//                        console.log("Expected items reserve: ", trackListView.itemsHeightReserve)
+//                        console.log("Top: ", trackListView.y)
                         musicPlayer.play()
                     }
                 }
@@ -241,12 +244,21 @@ Page {
                 currentIndex: trackList.currentIndex
                 highlight: Rectangle { color: "lightsteelblue"; }
                 interactive: true
+                cacheBuffer: 0
+                focus: true
+                keyNavigationEnabled: true
             }
 
             Rectangle {
                 color: "green"
                 Layout.fillWidth: true
                 height: 16
+                visible: false
+
+                Text {
+                    text: pageFlicker.contentHeight
+                    anchors.centerIn: parent
+                }
             }
         }
     }
