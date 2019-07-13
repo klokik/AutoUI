@@ -85,9 +85,8 @@ Page {
                     }
                 }
 
-                Rectangle {
+                Item {
                     id: metaRect
-    //                color: "lime"
                     Layout.preferredHeight: albumCover.height
                     Layout.fillWidth: true
 
