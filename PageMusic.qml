@@ -8,10 +8,21 @@ import QtMultimedia 5.12
 Page {
     padding: width * 0.05
 
-    MediaPlayer {
+    Audio {
         id: musicPlayer
+//        source: "file:///home/klokik/Music/track.flac"
 
-        source: "file:///home/klokik/Music/track.flac"
+        playlist: trackList
+    }
+
+    Playlist {
+        id: trackList
+        playbackMode: Playlist.Loop
+
+        PlaylistItem { source: "file:///home/klokik/Music/track.flac" }
+        PlaylistItem { source: "file:///home/klokik/Music/track1.mp3" }
+        PlaylistItem { source: "file:///home/klokik/Music/track2.mp3" }
+        PlaylistItem { source: "file:///home/klokik/Music/track3.mp3" }
     }
 
     ColumnLayout {
@@ -22,6 +33,17 @@ Page {
             source: "file:///home/klokik/Pictures/Cover.jpg"
             Layout.preferredHeight: width
             Layout.fillWidth: true
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    if (musicPlayer.playbackState != Audio.PlayingState)
+                        musicPlayer.play()
+                    else
+                        musicPlayer.pause()
+                }
+            }
         }
 
         Rectangle {
@@ -36,6 +58,7 @@ Page {
             Button {
                 text: "Back"
                 Layout.fillWidth: true
+                onClicked: trackList.previous()
             }
             Button {
                 text: "Stop"
@@ -50,7 +73,7 @@ Page {
                 Layout.fillWidth: true
 
                 onClicked: {
-                    if (musicPlayer.playbackState != MediaPlayer.PlayingState)
+                    if (musicPlayer.playbackState != Audio.PlayingState)
                         musicPlayer.play()
                     else
                         musicPlayer.pause()
@@ -59,6 +82,7 @@ Page {
             Button {
                 text: "Next"
                 Layout.fillWidth: true
+                onClicked: trackList.next()
             }
         }
 
@@ -100,9 +124,28 @@ Page {
             }
         }
 
-        Label {
-            text: "spacer"
+        ListView {
+            id: trackListView
             Layout.fillHeight: true
+
+            model: trackList
+            delegate: Text {
+                text: source
+                font.pointSize: 16
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        trackList.currentIndex = index
+                        console.log(parent.text)
+                        musicPlayer.play()
+                    }
+                }
+            }
+
+            currentIndex: trackList.currentIndex
+            highlight: Rectangle { color: "lightsteelblue"; }
+            interactive: true
         }
     }
 }
