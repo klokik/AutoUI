@@ -17,10 +17,12 @@ Page {
 
     Plugin {
         id: mapPlugin
-        name: "osm"
+        name: "mapboxgl"
     }
 
     Map {
+        id: mapView
+
         anchors.fill: parent
         plugin: mapPlugin
         zoomLevel: 12
@@ -34,6 +36,16 @@ Page {
 
             source: "qrc:/res/compass.svg"
             rotation: -parent.bearing
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    mapView.bearing = 0
+                    mapView.tilt = mapView.minimumTilt
+                    console.log("Reseting bearing and tilt")
+                }
+            }
         }
     }
 }
