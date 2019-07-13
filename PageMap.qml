@@ -24,5 +24,16 @@ Page {
         anchors.fill: parent
         plugin: mapPlugin
         zoomLevel: 12
+
+        Image {
+            width: parent.width / 5
+            height: width
+
+            x: parent.width - 40 - width
+            y: parent.y + 40
+
+            source: "qrc:/res/compass.svg"
+            rotation: -parent.bearing
+        }
     }
 }
