@@ -55,16 +55,16 @@ ApplicationWindow {
         var qml_imports = "import QtQuick 2.12; import QtQuick.Controls 2.5;"
         var tab_page_qml;
         if (kind == "web") {
-            label = "Web"
+            label = "Web";
             tab_page_qml = `${qml_imports} PageWeb { url: '${args}'}`;
         } else if (kind == "map") {
-            label = "Map"
+            label = "Map";
             tab_page_qml = `${qml_imports} PageMap {}`;
         } else if (kind == "music") {
-            label = "Music"
+            label = "Music";
             tab_page_qml = `${qml_imports} PageMusic {}`;
         } else if (kind == "landing") {
-            label = "..."
+            label = "...";
             tab_page_qml = `${qml_imports} PageLanding {}`;
         } else {
             tab_page_qml = `${qml_imports} Label { text: '${label}' }`;
