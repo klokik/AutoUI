@@ -10,5 +10,7 @@
         <file>PageMusic.qml</file>
         <file>res/AlbumCover.png</file>
         <file>res/compass.svg</file>
+        <file>res/location-pin-red.svg</file>
+        <file>res/location-pin-blue.svg</file>
     </qresource>
 </RCC>
