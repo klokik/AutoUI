@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtLocation 5.12
+import QtPositioning 5.12
 
 Page {
     width: 600
@@ -22,6 +23,14 @@ Page {
 
     Map {
         id: mapView
+
+        property var locationA: QtPositioning.coordinate(59.91, 10.75)
+        property var locationB: QtPositioning.coordinate(59.81, 10.78)
+        property var myLocation: QtPositioning.coordinate(59.85, 10.86)
+
+        property bool showA: true
+        property bool showB: true
+        property bool showMe: true
 
         anchors.fill: parent
         plugin: mapPlugin
@@ -46,6 +55,46 @@ Page {
                     console.log("Reseting bearing and tilt")
                 }
             }
+        }
+
+        center: QtPositioning.coordinate(59.91, 10.75)
+
+        MapQuickItem {
+            coordinate: parent.locationA
+            visible: parent.showA
+            anchorPoint.x: markerA.width / 2
+            anchorPoint.y: markerA.height
+
+            sourceItem: Image {
+                width: 64
+                height: 64
+                id: markerA
+
+                source: "qrc:/res/location-pin-red.svg"
+            }
+        }
+
+        MapQuickItem {
+            coordinate: parent.locationB
+            visible: parent.showB
+            anchorPoint.x: markerB.width / 2
+            anchorPoint.y: markerB.height
+
+            sourceItem: Image {
+                width: 64
+                height: 64
+                id: markerB
+
+                source: "qrc:/res/location-pin-blue.svg"
+            }
+        }
+
+        MapCircle {
+            center: parent.myLocation
+            radius: 50.0
+            color: '#C0C0FF'
+            border.width: 4
+            visible: parent.showMe
         }
     }
 }
