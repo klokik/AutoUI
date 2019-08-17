@@ -29,6 +29,7 @@ ApplicationWindow {
         property real fontSize: height / 2
 
         Component.onCompleted: {
+            newTab("climate", "none");
             newTab("music", "none");
             newTab("map", "none");
             newTab("web", "https://duckduckgo.com");
@@ -63,6 +64,9 @@ ApplicationWindow {
         } else if (kind == "music") {
             label = "Music";
             tab_page_qml = `${qml_imports} PageMusic {}`;
+        } else if (kind == "climate") {
+            label = "A/C";
+            tab_page_qml = `${qml_imports} PageClimate {}`;
         } else if (kind == "landing") {
             label = "...";
             tab_page_qml = `${qml_imports} PageLanding {}`;

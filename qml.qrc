@@ -12,5 +12,6 @@
         <file>res/compass.svg</file>
         <file>res/location-pin-red.svg</file>
         <file>res/location-pin-blue.svg</file>
+        <file>PageClimate.qml</file>
     </qresource>
 </RCC>
