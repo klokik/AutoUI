@@ -7,96 +7,105 @@ Page {
     width: 600
     height: 400
 
-    ColumnLayout {
+    Flickable {
         anchors.fill: parent
+        flickableDirection: Flickable.VerticalFlick
+        contentHeight: first_button.height * button_column.children.length * 1.2
 
-        property int fontSize: 48
-        property real buttonWidth: width / 2
+        ColumnLayout {
+            anchors.fill: parent
 
-        ToolButton {
-            text: "Map"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
+            property int fontSize: 48
+            property real buttonWidth: width / 2
 
-            onClicked: {
-                appContainer.newTab("map", "none")
+            id: button_column
+
+            ToolButton {
+                id: first_button
+                text: "Map"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
+
+                onClicked: {
+                    appContainer.newTab("map", "none")
+                }
             }
-        }
 
-        ToolButton {
-            text: "Google"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
+            ToolButton {
+                text: "Google"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
 
-            onClicked: {
-                appContainer.newTab("web", "google.com")
+                onClicked: {
+                    appContainer.newTab("web", "google.com")
+                }
             }
-        }
 
-        ToolButton {
-            text: "Music"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
+            ToolButton {
+                text: "Music"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
 
-            onClicked: {
-                appContainer.newTab("music", "none")
+                onClicked: {
+                    appContainer.newTab("music", "none")
+                }
             }
-        }
 
-        ToolButton {
-            text: "Radio"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
-        }
-
-        ToolButton {
-            text: "Movies"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
-        }
-
-        ToolButton {
-            text: "News"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
-        }
-
-        ToolButton {
-            text: "A/C"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
-
-            onClicked: {
-                appContainer.newTab("climate", "none")
+            ToolButton {
+                text: "Radio"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
             }
-        }
 
-        ToolButton {
-            text: "Sensors"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
-        }
+            ToolButton {
+                text: "Movies"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
+            }
 
-        ToolButton {
-            text: "Wireless"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
-        }
+            ToolButton {
+                text: "News"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
+            }
 
-        ToolButton {
-            text: "Debug"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: parent.buttonWidth
-            font.pointSize: parent.fontSize
+            ToolButton {
+                text: "A/C"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
+
+                onClicked: {
+                    appContainer.newTab("climate", "none")
+                }
+            }
+
+            ToolButton {
+                text: "Sensors"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
+            }
+
+            ToolButton {
+                text: "Wireless"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
+            }
+
+            ToolButton {
+                text: "Debug"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.buttonWidth
+                font.pointSize: parent.fontSize
+            }
         }
     }
 }
