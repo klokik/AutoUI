@@ -4,7 +4,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
 import QtMultimedia 5.12
-import Qt.labs.folderlistmodel 2.13
+import Qt.labs.folderlistmodel 2.12
 
 Page {
     padding: 20

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=AutoUI Infotainment
+Comment=Automotive infotainment shell
+Exec=/usr/local/bin/AutoUI
+Icon=/usr/share/icons/gnome/scalable/places/poi-car.svg
+Terminal=false
+Type=Application
+Categories=System;
+Keywords=System;Utility;
