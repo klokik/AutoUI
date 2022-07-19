@@ -18,7 +18,13 @@ Page {
 
     Plugin {
         id: mapPlugin
-        name: "mapboxgl"
+        //name: "mapboxgl"
+        name: "osm"
+
+        PluginParameter {
+            name: 'mapboxgl.access_token'
+            value: 'VALID_MAPBOX_TOKEN'
+        }
     }
 
     Map {
