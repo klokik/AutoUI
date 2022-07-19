@@ -108,4 +108,25 @@ Page {
             }
         }
     }
+
+    ColumnLayout {
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        width: parent.width * 0.2
+
+        ToolButton {
+            text: "F"
+            Layout.alignment: Qt.AlignHRight
+            Layout.preferredWidth: parent.width * 0.3
+            font.pointSize: button_column.fontSize
+
+            onClicked: {
+                console.log(appContainer.visibility);
+                if (appContainer.visibility == Qt.WindowFullScreen)
+                    appContainer.visibility = Qt.WindowMaximized;
+                else
+                    appContainer.visibility = Qt.WindowFullScreen;
+            }
+        }
+    }
 }
