@@ -2,6 +2,7 @@ import QtQuick 2.12
 
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
+import QtQuick.Window 2.2
 
 Page {
     width: 600
@@ -122,10 +123,10 @@ Page {
 
             onClicked: {
                 console.log(appContainer.visibility);
-                if (appContainer.visibility == Qt.WindowFullScreen)
-                    appContainer.visibility = Qt.WindowMaximized;
+                if (appContainer.visibility == Window.FullScreen)
+                    appContainer.visibility = Window.Maximized;
                 else
-                    appContainer.visibility = Qt.WindowFullScreen;
+                    appContainer.visibility = Window.FullScreen;
             }
         }
     }

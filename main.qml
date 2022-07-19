@@ -10,8 +10,7 @@ ApplicationWindow {
     height: 480
     title: qsTr("Tabs")
     id: appContainer
-    //visibility: "FullScreen"
-    visibility: "Maximized"
+    visibility: Window.Maximized
 
     SwipeView {
         id: swipeView
