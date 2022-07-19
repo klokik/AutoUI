@@ -103,4 +103,16 @@ Page {
             visible: parent.showMe
         }
     }
+
+    RouteQuery {
+        id: routeQuery
+    }
+
+    RouteModel {
+        id: routeModel
+        plugin: mapPlugin
+        query: routeQuery
+        autoUpdate: false
+    }
+
 }
