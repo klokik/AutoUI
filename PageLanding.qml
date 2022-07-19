@@ -129,5 +129,16 @@ Page {
                     appContainer.visibility = Window.FullScreen;
             }
         }
+
+        ToolButton {
+            text: "Q"
+            Layout.alignment: Qt.AlignHRight
+            Layout.preferredWidth: parent.width * 0.3
+            font.pointSize: button_column.fontSize
+
+            onClicked: {
+                Qt.exit(0);
+            }
+        }
     }
 }
