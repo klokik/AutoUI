@@ -44,6 +44,9 @@ Page {
         PlaylistItem {
             source: "http://kcrw.streamguys1.com/kcrw_192k_mp3_e24_internet_radio"
         }
+        PlaylistItem {
+            source: "https://online-news.radioplayer.ua/RadioNews"
+        }
 
         onItemInserted: trackListView.itemsHeightReserve = itemCount
     }
