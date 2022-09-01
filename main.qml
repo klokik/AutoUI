@@ -105,6 +105,7 @@ ApplicationWindow {
         y: swipeView.height
         anchors.left: parent.left
         anchors.right: parent.right
+
         states: State {
             name: "visible"
             when: inputPanel.active
@@ -136,9 +137,16 @@ ApplicationWindow {
         AutoScroller {}
     }
 
+
     Binding {
         target: VirtualKeyboardSettings
         property: "fullScreenMode"
         value: swipeView.height > 0 && (swipeView.width / swipeView.height) > (16.0 / 9.0)
+    }
+
+    Binding {
+        target: VirtualKeyboardSettings
+        property: "activeLocales"
+        value: ["en_US", "uk_UA", "pl_PL", "de_DE", "fr_FR"]
     }
 }
